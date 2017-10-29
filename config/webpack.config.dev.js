@@ -86,7 +86,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -117,7 +117,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -146,7 +146,7 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
@@ -159,18 +159,22 @@ module.exports = {
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
           {
-            test: /\.css$/,
+            test: /\.scss$/,
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
+                  sourceMap: true,
                   importLoaders: 1,
+                  modules: true,
+                  localIdentName: '[name]__[local]--[hash:base64:5]',
                 },
               },
               {
                 loader: require.resolve('postcss-loader'),
                 options: {
+                  sourceMap: true,
                   // Necessary for external CSS imports to work
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
@@ -186,6 +190,13 @@ module.exports = {
                       flexbox: 'no-2009',
                     }),
                   ],
+                },
+              },
+              {
+                loader: require.resolve('sass-loader'),
+                options: {
+                  sourceMap: true,
+                  includePaths: [paths.appSrc],
                 },
               },
             ],
