@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import style from './App.scss';
+import medals from './data';
 
 class App extends Component {
   render() {
@@ -13,6 +14,12 @@ class App extends Component {
         <p className={style.intro}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        {
+          medals &&
+          <ul>
+            { medals.map(medal => <li>{medal.year}</li>) }
+          </ul>
+        }
       </div>
     );
   }
