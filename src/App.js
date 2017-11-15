@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import style from './App.scss';
-import medals from './data';
+import { Test } from 'components/Test';
 
 class App extends Component {
+
   render() {
+    console.log(Test);
+
     return (
       <div className={style.root}>
         <header className={style.header}>
@@ -14,12 +17,6 @@ class App extends Component {
         <p className={style.intro}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        {
-          medals &&
-          <ul>
-            { medals.map(medal => <li>{medal.year}</li>) }
-          </ul>
-        }
       </div>
     );
   }
